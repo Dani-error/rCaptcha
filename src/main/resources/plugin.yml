@@ -1,0 +1,5 @@
+name: rCaptcha
+version: '${project.version}'
+main: me.xdani.rcaptcha.Captcha
+authors: [ _xDani_ ]
+description: Powerful Captcha Security.

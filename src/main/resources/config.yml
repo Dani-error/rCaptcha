@@ -1,0 +1,30 @@
+#    ╱╱╭━━━╮╱╱╱╱╱╭╮╱╱╱╭╮
+#    ╱╱┃╭━╮┃╱╱╱╱╭╯╰╮╱╱┃┃
+#    ╭━┫┃╱╰╋━━┳━┻╮╭╋━━┫╰━┳━━╮
+#    ┃╭┫┃╱╭┫╭╮┃╭╮┃┃┃╭━┫╭╮┃╭╮┃
+#    ┃┃┃╰━╯┃╭╮┃╰╯┃╰┫╰━┫┃┃┃╭╮┃
+#    ╰╯╰━━━┻╯╰┫╭━┻━┻━━┻╯╰┻╯╰╯
+#    ╱╱╱╱╱╱╱╱╱┃┃
+#    ╱╱╱╱╱╱╱╱╱╰╯
+
+TIME-TO-KICK: 30 # Time in seconds
+
+BYPASS-PERMISSION: "rcaptcha.bypass"
+
+KICK-MESSAGE:
+  TIME: '&cYou took too long to complete the captcha!'
+  BAD-ITEM: '&cYou did not pass the captcha challenge, try again.'
+
+CAPTCHA-PASSED: '&aYou successfully passed the captcha!'
+
+MENU:
+  TITLE: '&aCaptcha'
+  ROWS: 3
+  RANDOM-WOOL:
+    NAME: "&cDon't click here!"
+    LORE: []
+    GLOW: false
+  CORRECT-WOOL:
+    NAME: "&aClick here!"
+    LORE: []
+    GLOW: true
