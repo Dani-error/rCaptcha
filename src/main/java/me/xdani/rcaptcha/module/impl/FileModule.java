@@ -23,6 +23,11 @@ public class FileModule extends Module {
     }
 
     @Override
+    public boolean preLoad() {
+        return true;
+    }
+
+    @Override
     public String getName() {
         return "File";
     }

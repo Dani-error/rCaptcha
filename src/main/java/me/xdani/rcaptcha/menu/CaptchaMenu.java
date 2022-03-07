@@ -43,14 +43,14 @@ public class CaptchaMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         HashMap<Integer, Button> buttons = Maps.newHashMap();
 
-        short woolData = (short) JavaUtil.randomNumber(15);
+        int woolData = JavaUtil.randomNumber(15);
         int slot = JavaUtil.randomNumber(getSize());
 
         for (int i = 0; i < getSize(); i++) {
 
             if(i == slot) continue;
 
-            short randomWool = (short) JavaUtil.randomNumberWithExclusionWithoutMin(15, woolData);
+            int randomWool = JavaUtil.randomNumberWithExclusionWithoutMin(15, woolData);
             buttons.put(i, new RandomWool(randomWool));
         }
 
@@ -63,7 +63,7 @@ public class CaptchaMenu extends Menu {
     @AllArgsConstructor
     private static class RandomWool extends Button {
 
-        private final short data;
+        private final int data;
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -80,7 +80,7 @@ public class CaptchaMenu extends Menu {
     @AllArgsConstructor
     private static class CorrectWool extends Button {
 
-        private final short data;
+        private final int data;
 
         @Override
         public ItemStack getButtonItem(Player player) {

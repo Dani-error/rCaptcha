@@ -12,6 +12,11 @@ public class ServiceModule extends Module {
     }
 
     @Override
+    public boolean preLoad() {
+        return true;
+    }
+
+    @Override
     public void onEnable(Captcha plugin) {
         this.reload();
     }

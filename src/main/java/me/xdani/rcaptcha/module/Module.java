@@ -20,6 +20,10 @@ public abstract class Module {
         return modules;
     }
 
+    public boolean preLoad(){
+        return false;
+    }
+
     public abstract void onEnable(Captcha plugin);
 
     public Module() {

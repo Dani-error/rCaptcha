@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.experimental.UtilityClass;
 import me.xdani.rcaptcha.Captcha;
 import me.xdani.rcaptcha.module.impl.*;
+import me.xdani.rcaptcha.utils.ReflectUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -14,17 +15,11 @@ import java.util.List;
 @Setter
 public final class ModuleManager {
 
-    private static ServiceModule serviceModule;
-    private static FileModule fileModule;
-    private static ManagerModule managerModule;
-
     public static void preLoad(Captcha plugin) {
-        Module fileModule = ModuleManager.getByName("File");
-        fileModule.onEnable(plugin);
-        fileModule.setLoaded(true);
-        Module serviceModule = ModuleManager.getByName("Service");
-        serviceModule.onEnable(plugin);
-        serviceModule.setLoaded(true);
+        Module.getModules().stream().filter((Module::preLoad)).forEach((module -> {
+            module.onEnable(plugin);
+            module.setLoaded(true);
+        }));
     }
 
 
@@ -36,30 +31,6 @@ public final class ModuleManager {
         }
 
         return null;
-    }
-
-    public static ServiceModule getServiceModule() {
-        return serviceModule;
-    }
-
-    public static void setServiceModule(ServiceModule serviceModule) {
-        ModuleManager.serviceModule = serviceModule;
-    }
-
-    public static FileModule getFileModule() {
-        return fileModule;
-    }
-
-    public static void setFileModule(FileModule fileModule) {
-        ModuleManager.fileModule = fileModule;
-    }
-
-    public static ManagerModule getManagerModule() {
-        return managerModule;
-    }
-
-    public static void setManagerModule(ManagerModule managerModule) {
-        ModuleManager.managerModule = managerModule;
     }
 
     public static List<Module> getOrderModules() {
@@ -80,14 +51,28 @@ public final class ModuleManager {
 
     public static void register() {
 
-        ModuleManager.setFileModule(new FileModule());
-        ModuleManager.setServiceModule(new ServiceModule());
-        ModuleManager.setManagerModule(new ManagerModule());
+        for (Class<?> clazz : ReflectUtils.getClassesInPackage("me.xdani.rcaptcha.module.impl")) {
+            try {
+                clazz.newInstance();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
 
-        new ListenerModule();
+    }
 
-        new CommandModule();
+    /* Some Getters */
 
+    public static ServiceModule getServiceModule() {
+        return (ServiceModule) getByName("Service");
+    }
+
+    public static FileModule getFileModule() {
+        return (FileModule) getByName("File");
+    }
+
+    public static ManagerModule getManagerModule() {
+        return (ManagerModule) getByName("Manager");
     }
 }
 
