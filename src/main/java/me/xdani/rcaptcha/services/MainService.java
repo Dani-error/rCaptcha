@@ -3,6 +3,7 @@ package me.xdani.rcaptcha.services;
 import com.google.common.collect.Lists;
 import lombok.experimental.UtilityClass;
 import me.xdani.rcaptcha.module.ModuleManager;
+import me.xdani.rcaptcha.module.impl.FileModule;
 import me.xdani.rcaptcha.utils.file.FileConfig;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @UtilityClass
 public class MainService {
 
-    private static final FileConfig mainConfig = ModuleManager.getFileModule().getFile("config");
+    private static final FileConfig mainConfig = ((FileModule) ModuleManager.getByName("File")).getFile("config");
 
     public static int TIME_TO_KICK;
 

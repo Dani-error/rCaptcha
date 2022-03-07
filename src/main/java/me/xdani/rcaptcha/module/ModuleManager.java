@@ -61,18 +61,5 @@ public final class ModuleManager {
 
     }
 
-    /* Some Getters */
-
-    public static ServiceModule getServiceModule() {
-        return (ServiceModule) getByName("Service");
-    }
-
-    public static FileModule getFileModule() {
-        return (FileModule) getByName("File");
-    }
-
-    public static ManagerModule getManagerModule() {
-        return (ManagerModule) getByName("Manager");
-    }
 }
 
